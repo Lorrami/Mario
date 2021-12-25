@@ -14,6 +14,7 @@ class Level{
    }
 
    void SpawnObject(GameObject obj){
+      obj.OwningLevel = this;
       _objects.Add(obj);
    }
 }
