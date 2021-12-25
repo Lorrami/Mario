@@ -10,7 +10,6 @@ class Application
     public void Run()
     {
         Clock cl = new Clock();
-
         while(_window.IsOpen)
         {
             float dt = cl.ElapsedTime.AsSeconds();
