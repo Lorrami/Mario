@@ -12,7 +12,7 @@ class Level{
          obj.Render(window);
    }
 
-   void SpawnObject(GameObject obj){
+   public void SpawnObject(GameObject obj){
       obj.OwningLevel = this;
       _objects.Add(obj);
    }
