@@ -5,6 +5,7 @@ using SFML.Window;
 class Player : GameObject
 {
     private RectangleShape _rect = new RectangleShape(); 
+    private const float _speed = 40.0f;
     public Player()
     {
         _rect.Position = new Vector2f(50f, 50f);
@@ -13,32 +14,32 @@ class Player : GameObject
     }
     public override void Update(float dt)
     {
-        _keyboardCheck();
+        KeyboardCheck(dt);
     }
     public override void Render(RenderWindow window)
     {
         window.Draw(_rect);
     }
-    private void _keyboardCheck()
+    private void KeyboardCheck(float dt)
     {
         if(Keyboard.IsKeyPressed(Keyboard.Key.D))
         {
-            _move(1f, 0);
+            Move(_speed * dt, 0);
         }
         if(Keyboard.IsKeyPressed(Keyboard.Key.A))
         {
-            _move(-1f, 0);
+            Move(-_speed * dt, 0);
         }
         if(Keyboard.IsKeyPressed(Keyboard.Key.W))
         {
-            _move(0, -1f);
+            Move(0, -_speed * dt);
         }
         if(Keyboard.IsKeyPressed(Keyboard.Key.S))
         {
-            _move(0, 1f);
+            Move(0, _speed * dt);
         }
     }
-    private void _move(float dx, float dy)
+    private void Move(float dx, float dy)
     {
         _rect.Position += new Vector2f(dx, dy);
     }
