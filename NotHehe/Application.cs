@@ -9,10 +9,14 @@ class Application
 
     public void Run()
     {
+        Clock cl = new Clock();
+
         while(_window.IsOpen)
         {
+            float dt = cl.ElapsedTime.AsSeconds();
+            cl.Restart();
             _window.DispatchEvents();
-            _currentLevel.Update(0.5f);
+            _currentLevel.Update(dt);
             _window.Clear();
             _currentLevel.Render(_window);
             _window.Display();
