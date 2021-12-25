@@ -8,7 +8,7 @@ class Level{
    }
    public void Render(RenderWindow window){
       foreach(var obj in _objects)
-         obj.Render(window);
+         window.Draw(obj);
    }
    public void SpawnObject(GameObject obj){
       obj.OwningLevel = this;

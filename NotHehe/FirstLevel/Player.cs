@@ -4,22 +4,18 @@ using SFML.Window;
 
 class Player : GameObject
 {
-    private RectangleShape _rect = new RectangleShape(); 
     private const float _speed = 40.0f;
     public Player()
     {
-        _rect.Position = new Vector2f(50f, 50f);
-        _rect.Size = new Vector2f(50f, 50f);
-        _rect.FillColor = Color.Green;
+        Position = new Vector2f(50f, 50f);
+        Size = new Vector2f(50f, 50f);
+        FillColor = Color.Green;
     }
     public override void Update(float dt)
     {
         KeyboardCheck(dt);
     }
-    public override void Render(RenderWindow window)
-    {
-        window.Draw(_rect);
-    }
+
     private void KeyboardCheck(float dt)
     {
         if(Keyboard.IsKeyPressed(Keyboard.Key.D))
@@ -41,6 +37,6 @@ class Player : GameObject
     }
     private void Move(float dx, float dy)
     {
-        _rect.Position += new Vector2f(dx, dy);
+        Position += new Vector2f(dx, dy);
     }
 }
