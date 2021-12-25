@@ -4,7 +4,7 @@ using SFML.System;
 
 class Application
 {
-    private RenderWindow _window = new RenderWindow(new VideoMode(720, 540), "Mario");
+    private RenderWindow _window = new RenderWindow(new VideoMode(1500, 850), "Mario");
     public void Run()
     {
         while(_window.IsOpen)
