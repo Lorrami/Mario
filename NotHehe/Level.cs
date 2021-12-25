@@ -6,12 +6,10 @@ class Level{
       foreach(var obj in _objects)
          obj.Update(dt);
    }
-
    public void Render(RenderWindow window){
       foreach(var obj in _objects)
          obj.Render(window);
    }
-
    public void SpawnObject(GameObject obj){
       obj.OwningLevel = this;
       _objects.Add(obj);
