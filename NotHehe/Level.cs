@@ -2,7 +2,6 @@ using SFML.Graphics;
 using System.Collections.Generic;
 class Level{
    private List<GameObject> _objects = new List<GameObject>();
-
    public void Update(float dt){
       foreach(var obj in _objects)
          obj.Update(dt);
@@ -13,7 +12,7 @@ class Level{
          obj.Render(window);
    }
 
-   void SpawnObject(GameObject obj){
+   public void SpawnObject(GameObject obj){
       _objects.Add(obj);
    }
 }
