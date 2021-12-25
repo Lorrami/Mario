@@ -12,7 +12,7 @@ class Application
         while(_window.IsOpen)
         {
             _window.DispatchEvents();
-            _currentLevel.Update(0);
+            _currentLevel.Update(0.5f);
             _window.Clear();
             _currentLevel.Render(_window);
             _window.Display();
