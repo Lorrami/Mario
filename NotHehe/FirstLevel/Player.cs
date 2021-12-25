@@ -4,7 +4,7 @@ using SFML.Window;
 
 class Player : GameObject
 {
-    private const float _speed = 40.0f;
+    private readonly float _speed = 40.0f;
     public Player()
     {
         Position = new Vector2f(50f, 50f);
@@ -34,6 +34,9 @@ class Player : GameObject
         {
             Move(0, _speed * dt);
         }
+
+        if(Keyboard.IsKeyPressed(Keyboard.Key.Space))
+            Spawn(new Bullet(new Vector2f(1, 0)));
     }
     private void Move(float dx, float dy)
     {

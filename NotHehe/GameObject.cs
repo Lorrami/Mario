@@ -11,6 +11,13 @@ abstract class GameObject: RectangleShape{
         if(OwningLevel is null)
             throw new Exception("Null owning level");
         
-        OwningLevel.SpawnObject(obj);
+        OwningLevel.SpawnObject(obj, Position);
+    }
+
+    public void Destroy(){
+        if(OwningLevel is null)
+            throw new Exception("Null owning level");
+
+        OwningLevel.DestroyObject(this);
     }
 }
