@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "dgSpecHash": "iCEgKwwLPGuOoLRUnK1hl110uS/F2x6m6RbydWbn9RK7jfxTzuPeii6MOC3F/4edMPEXk1JxpKwZ3UZ4PlxbtQ==",
+  "success": true,
+  "projectFilePath": "/home/havvvanaclub/Projects/NotHehe/NotHehe/NotHehe.csproj",
+  "expectedPackageFiles": [
+    "/home/havvvanaclub/.nuget/packages/csfml/2.5.0/csfml.2.5.0.nupkg.sha512",
+    "/home/havvvanaclub/.nuget/packages/sfml.graphics/2.5.0/sfml.graphics.2.5.0.nupkg.sha512",
+    "/home/havvvanaclub/.nuget/packages/sfml.system/2.5.0/sfml.system.2.5.0.nupkg.sha512",
+    "/home/havvvanaclub/.nuget/packages/sfml.window/2.5.0/sfml.window.2.5.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /home/havvvanaclub/Projects/NotHehe/NotHehe/obj/project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
+}
