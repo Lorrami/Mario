@@ -14,7 +14,7 @@ class Bullet: GameObject{
     public override void Update(float dt)
     {
         _lifetime += dt;
-        if(_lifetime > 2)
+        if(_lifetime > 3)
             Destroy();
         
         Position += _direction * _speed * dt;
