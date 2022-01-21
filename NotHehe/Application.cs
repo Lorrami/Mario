@@ -7,6 +7,12 @@ class Application
     private RenderWindow _window = new RenderWindow(new VideoMode(720, 540), "Mario");
     private Level _currentLevel = new FirstLevel();
 
+
+    public Application()
+    {
+        _window.Closed += OnWindowClose;
+    }
+
     public void Run()
     {
         Clock cl = new Clock();
@@ -20,5 +26,10 @@ class Application
             _currentLevel.Render(_window);
             _window.Display();
         }
+    }
+
+    private void OnWindowClose(object? window, EventArgs e)
+    {
+        _window.Close();
     }
 }
