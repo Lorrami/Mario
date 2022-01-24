@@ -7,7 +7,6 @@ class Application
     private static RenderWindow _window = new RenderWindow(new VideoMode(720, 540), "Mario");
     private Level _currentLevel = new FirstLevel();
 
-
     public Application()
     {
         _window.Closed += OnWindowClose;
