@@ -55,8 +55,8 @@ class Player : GameObject
     {
         if(Mouse.IsButtonPressed(Mouse.Button.Left) && !_isShooted)
         {
-            float X = -Mouse.GetPosition().X + Position.X + _rotationSpeed;
-            float Y = -Mouse.GetPosition().Y + Position.Y + _rotationSpeed;
+            float X = -Application.RelativeMousePosition.X + Position.X + _rotationSpeed;
+            float Y = -Application.RelativeMousePosition.Y + Position.Y + _rotationSpeed;
             Spawn(new Bullet(new Vector2f(-X, -Y)));
             //_isShooted = true;
             //new Thread(() => { Thread.Sleep(100); _isShooted = false; }).Start();

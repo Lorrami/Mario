@@ -7,6 +7,14 @@ class Application
     private static RenderWindow _window = new RenderWindow(new VideoMode(720, 540), "Mario");
     private Level _currentLevel = new FirstLevel();
 
+    public static Vector2i RelativeMousePosition
+    {
+        get
+        {
+            return Mouse.GetPosition(_window);
+        }
+    }
+
     public Application()
     {
         _window.Closed += OnWindowClose;
