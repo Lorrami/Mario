@@ -4,7 +4,7 @@ using SFML.Window;
 
 class Player : GameObject
 {
-    private readonly float _speed = 100.0f, _rotationSpeed = 100.0f;
+    private readonly float _speed = 100.0f;
     private float RotationVector;
     private bool _isShooted = false;
 
@@ -22,8 +22,8 @@ class Player : GameObject
     }
     private void CameraControl()
     {
-        float X = -Mouse.GetPosition().X + Position.X + _rotationSpeed;
-        float Y = -Mouse.GetPosition().Y + Position.Y + _rotationSpeed;
+        float X = -Application.RelativeMousePosition.X + Position.X;
+        float Y = -Application.RelativeMousePosition.Y + Position.Y;
         RotationVector = Convert.ToSingle(Math.Atan2(Y, X)) * 180.0f/3.14159265f;
         Console.WriteLine(RotationVector);
         Rotation = RotationVector;
@@ -55,8 +55,8 @@ class Player : GameObject
     {
         if(Mouse.IsButtonPressed(Mouse.Button.Left) && !_isShooted)
         {
-            float X = -Application.RelativeMousePosition.X + Position.X + _rotationSpeed;
-            float Y = -Application.RelativeMousePosition.Y + Position.Y + _rotationSpeed;
+            float X = -Application.RelativeMousePosition.X + Position.X;
+            float Y = -Application.RelativeMousePosition.Y + Position.Y;
             Spawn(new Bullet(new Vector2f(-X, -Y)));
             //_isShooted = true;
             //new Thread(() => { Thread.Sleep(100); _isShooted = false; }).Start();
