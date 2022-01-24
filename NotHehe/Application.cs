@@ -4,8 +4,8 @@ using SFML.System;
 
 class Application
 {
-    private RenderWindow _window = new RenderWindow(new VideoMode(720, 540), "Mario");
-    private Level _currentLevel = new FirstLevel();
+    private static RenderWindow _window = new RenderWindow(new VideoMode(720, 540), "Mario");
+    private Level _currentLevel = new FirstLevel(_window);
 
 
     public Application()

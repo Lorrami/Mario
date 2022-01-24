@@ -4,19 +4,27 @@ using SFML.Window;
 
 class Player : GameObject
 {
-    private readonly float _speed = 40.0f;
-    public Player()
+    private readonly float _speed = 100.0f;
+    private Vector2i MousePos;
+    private RenderWindow _window;
+    public Player(RenderWindow _window)
     {
-        Position = new Vector2f(50f, 50f);
+        this._window = _window;
         Size = new Vector2f(50f, 50f);
+        Origin = Size/2;
         FillColor = Color.Green;
     }
     public override void Update(float dt)
     {
-        KeyboardCheck(dt);
+        PositionControl(dt);
+        CameraControl();
+        Shooting();
     }
-
-    private void KeyboardCheck(float dt)
+    private void CameraControl()
+    {
+        MousePos = Mouse.GetPosition();
+    }
+    private void PositionControl(float dt)
     {
         if(Keyboard.IsKeyPressed(Keyboard.Key.D))
         {
@@ -34,12 +42,16 @@ class Player : GameObject
         {
             Move(0, _speed * dt);
         }
-
-        if(Keyboard.IsKeyPressed(Keyboard.Key.Space))
-            Spawn(new Bullet(new Vector2f(1, 0)));
     }
     private void Move(float dx, float dy)
     {
         Position += new Vector2f(dx, dy);
+    }
+    private void Shooting()
+    {
+        if(Mouse.IsButtonPressed(Mouse.Button.Left))
+        {
+            Spawn(new Bullet(new Vector2f(1, 0)));
+        }
     }
 }
