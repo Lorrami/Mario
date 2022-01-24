@@ -4,7 +4,7 @@ using SFML.System;
 
 class Application
 {
-    private static RenderWindow _window = new RenderWindow(new VideoMode(720, 540), "Mario");
+    private static RenderWindow _window = new RenderWindow(new VideoMode(720, 540), "Mario", Styles.Default, new ContextSettings(0, 0, 4));
     private Level _currentLevel = new FirstLevel();
 
     public static Vector2i RelativeMousePosition
