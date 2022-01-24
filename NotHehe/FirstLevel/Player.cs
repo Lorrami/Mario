@@ -23,6 +23,11 @@ class Player : GameObject
     private void CameraControl()
     {
         MousePos = Mouse.GetPosition();
+        Vector2f v = new Vector2f(MousePos.X, MousePos.Y);
+        Vector2f vd = v - Position;
+        double X = Convert.ToDouble(vd.X);
+        double Y = Convert.ToDouble(vd.Y);
+        Rotation = Convert.ToSingle(Math.Atan2(Y, X)) * 180.0f/3.14f;
     }
     private void PositionControl(float dt)
     {
