@@ -4,12 +4,11 @@ using SFML.Window;
 
 class Player : GameObject
 {
-    private readonly float _speed = 100.0f;
+    private readonly float _speed = 100.0f, _rotationSpeed = 100.0f;
     private Vector2i MousePos;
-    private RenderWindow _window;
-    public Player(RenderWindow _window)
+    private float RotationVector;
+    public Player()
     {
-        this._window = _window;
         Size = new Vector2f(50f, 50f);
         Origin = Size/2;
         FillColor = Color.Green;
@@ -22,12 +21,11 @@ class Player : GameObject
     }
     private void CameraControl()
     {
-        MousePos = Mouse.GetPosition();
-        Vector2f v = new Vector2f(MousePos.X, MousePos.Y);
-        Vector2f vd = v - Position;
-        double X = Convert.ToDouble(vd.X);
-        double Y = Convert.ToDouble(vd.Y);
-        Rotation = Convert.ToSingle(Math.Atan2(Y, X)) * 180.0f/3.14f;
+        float X = -Mouse.GetPosition().X + Position.X + _rotationSpeed;
+        float Y = -Mouse.GetPosition().Y + Position.Y + _rotationSpeed;
+        RotationVector = Convert.ToSingle(Math.Atan2(Y, X)) * 180.0f/3.14159265f;
+        Console.WriteLine(RotationVector);
+        Rotation = RotationVector;
     }
     private void PositionControl(float dt)
     {
@@ -56,7 +54,7 @@ class Player : GameObject
     {
         if(Mouse.IsButtonPressed(Mouse.Button.Left))
         {
-            Spawn(new Bullet(new Vector2f(1, 0)));
+            Spawn(new Bullet(new Vector2f(RotationVector + 1, RotationVector)));
         }
     }
 }

@@ -4,8 +4,8 @@ using SFML.Window;
 
 class FirstLevel : Level
 {
-    public FirstLevel(RenderWindow _window)
+    public FirstLevel()
     {
-        SpawnObject(new Player(_window), new Vector2f(100.0f, 100.0f));
+        SpawnObject(new Player(), new Vector2f(100.0f, 100.0f));
     }
 }

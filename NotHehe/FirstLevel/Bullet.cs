@@ -3,7 +3,7 @@ using SFML.Graphics;
 
 class Bullet: GameObject{
     private readonly Vector2f _direction;
-    private readonly float _speed = 200;
+    private readonly float _speed = 300;
     private float _lifetime = 0;
     public Bullet(Vector2f direction){
         _direction = direction;
