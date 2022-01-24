@@ -5,8 +5,9 @@ using SFML.Window;
 class Player : GameObject
 {
     private readonly float _speed = 100.0f, _rotationSpeed = 100.0f;
-    private Vector2i MousePos;
     private float RotationVector;
+    private bool _isShooted = false;
+
     public Player()
     {
         Size = new Vector2f(50f, 50f);
@@ -52,9 +53,11 @@ class Player : GameObject
     }
     private void Shooting()
     {
-        if(Mouse.IsButtonPressed(Mouse.Button.Left))
+        if(Mouse.IsButtonPressed(Mouse.Button.Left) && !_isShooted)
         {
-            Spawn(new Bullet(new Vector2f(RotationVector + 1, RotationVector)));
+            Spawn(new Bullet(new Vector2f(1, 0)));
+            _isShooted = true;
+            new Thread(() => { Thread.Sleep(100); _isShooted = false; }).Start();
         }
     }
 }
