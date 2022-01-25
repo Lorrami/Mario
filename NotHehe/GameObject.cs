@@ -4,7 +4,17 @@ using SFML.System;
 
 abstract class GameObject
 {
-    public Level? OwningLevel{private get; set;}
+    private Level? _level;
+    public Level OwningLevel{
+        private get {
+            if(_level is null)    
+                throw new Exception("Null owning level");
+            return _level;
+        }
+        set{
+            _level = value ?? throw new Exception("Null owning level");
+        }
+    }
     public Vector2f Position = new Vector2f(0.0f, 0.0f);
     public float Rotation;
     public readonly List<Shape> Shapes = new List<Shape>();
@@ -12,16 +22,10 @@ abstract class GameObject
     public abstract void Update(float dt);
 
     public void Spawn(GameObject obj){
-        if(OwningLevel is null)
-            throw new Exception("Null owning level");
-        
         OwningLevel.SpawnObject(obj, Position);
     }
 
     public void Destroy(){
-        if(OwningLevel is null)
-            throw new Exception("Null owning level");
-
         OwningLevel.DestroyObject(this);
     }
 
