@@ -163,9 +163,14 @@ vec4 GetFilteredValue(sampler2D sampler, vec2 texCoords){
 void main()
 {
     vec4 acc = vec4(0.0);
-    for(int i = 0; i<8; i++){
-        acc += GetFilteredValue(u_Textures[i], gl_TexCoord[0].xy);// * ((5 - i) / 5.0);
-    }
+    acc += GetFilteredValue(u_Textures[0], gl_TexCoord[0].xy);
+    acc += GetFilteredValue(u_Textures[1], gl_TexCoord[0].xy);
+    acc += GetFilteredValue(u_Textures[2], gl_TexCoord[0].xy);
+    acc += GetFilteredValue(u_Textures[3], gl_TexCoord[0].xy);
+    acc += GetFilteredValue(u_Textures[4], gl_TexCoord[0].xy);
+    acc += GetFilteredValue(u_Textures[5], gl_TexCoord[0].xy);
+    acc += GetFilteredValue(u_Textures[6], gl_TexCoord[0].xy);
+    acc += GetFilteredValue(u_Textures[7], gl_TexCoord[0].xy);
     //gl_FragColor = gl_Color * GetFilteredValue(u_Textures[4], gl_TexCoord[0].xy);
     gl_FragColor = gl_Color * acc;
 }
