@@ -72,6 +72,8 @@ class ShaderSources
 {
           
     public const string UndersampleShaderVertex = @"
+#version 130
+
 void main()
 {
     // transform the vertex position
@@ -84,6 +86,7 @@ void main()
 }";
 
     public const string UndersampleShaderFragment = @"
+#version 130
 
 uniform sampler2D u_Texture;
 
@@ -95,6 +98,7 @@ void main()
     
         
     public const string CombineShaderVertex = @"
+#version 130
 
 void main()
 {
@@ -108,6 +112,7 @@ void main()
 }";
 
     public const string CombineShaderFragment = @"
+#version 130
 
 uniform sampler2D u_Textures[8];
 
