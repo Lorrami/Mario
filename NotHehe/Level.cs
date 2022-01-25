@@ -19,8 +19,15 @@ class Level{
    }
    public void Render(RenderTarget rt)
    {
-      foreach(var obj in _objects)
-         rt.Draw(obj);
+      foreach (var obj in _objects)
+      {
+         RenderStates states = RenderStates.Default;
+         states.Transform = obj.Transform;
+         foreach (var shape in obj.Shapes)
+         {
+            rt.Draw(shape, states);
+         }
+      }
    }
    public void SpawnObject(GameObject obj, Vector2f position){
       obj.OwningLevel = this;

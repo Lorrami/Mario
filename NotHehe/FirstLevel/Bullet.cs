@@ -6,18 +6,22 @@ class Bullet: GameObject{
     private readonly float _speed = 300;
     private float _lifetime = 0;
     private const float _deathTime = 3;
+
+    private CircleShape _bulletBody = new CircleShape(10);
     public Bullet(Vector2f direction){
         _direction = direction / (float)Math.Sqrt(direction.X * direction.X + direction.Y * direction.Y);
-        Size = new Vector2f(10, 10);
-        Origin = Size/2;
-        FillColor = Color.Red;
+        _bulletBody.Origin = new Vector2f(_bulletBody.Radius/2, _bulletBody.Radius/2);
+        _bulletBody.FillColor = Color.Red;
+        
         Rotation = (float)Math.Atan2(_direction.Y, _direction.X) / 3.14f * 180.0f;
+
+        AddComponent(_bulletBody);
     }
     public override void Update(float dt)
     {
         _lifetime += dt;
 
-        FillColor = new Color(255, (byte)(255 * (_lifetime / _deathTime)), 0, 255);
+        _bulletBody.FillColor = new Color(255, (byte)(255 * (_lifetime / _deathTime)), 0, 255);
 
         if(_lifetime > _deathTime)
             Destroy();
