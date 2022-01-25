@@ -1,6 +1,7 @@
 using SFML.Graphics;
 using SFML.System;
 using System.Collections.Generic;
+
 class Level{
    private List<GameObject> _objects = new List<GameObject>();
    private List<GameObject> _pendingAdd = new List<GameObject>();
@@ -16,9 +17,10 @@ class Level{
          _objects.Remove(obj);
       _pendingRemove.Clear();
    }
-   public void Render(RenderWindow window){
+   public void Render(RenderTarget rt)
+   {
       foreach(var obj in _objects)
-         window.Draw(obj);
+         rt.Draw(obj);
    }
    public void SpawnObject(GameObject obj, Vector2f position){
       obj.OwningLevel = this;

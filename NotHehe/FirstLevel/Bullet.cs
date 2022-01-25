@@ -11,6 +11,7 @@ class Bullet: GameObject{
         Size = new Vector2f(10, 10);
         Origin = Size/2;
         FillColor = Color.Red;
+        Rotation = (float)Math.Atan2(_direction.Y, _direction.X) / 3.14f * 180.0f;
     }
     public override void Update(float dt)
     {
