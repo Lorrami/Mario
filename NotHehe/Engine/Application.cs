@@ -10,7 +10,7 @@ class Application
     private static RenderWindow _window = new RenderWindow(new VideoMode(WindowSize.X, WindowSize.Y), "Mario",
         Styles.Default, DefaultContextSettings);
 
-    private LevelRenderer _renderer = new LevelRenderer(_window);
+    private LevelRenderer _renderer = new LevelRenderer(_window, true);
     private Level _currentLevel = new FirstLevel();
 
     public static Vector2i RelativeMousePosition

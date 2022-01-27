@@ -3,8 +3,9 @@ using SFML.System;
 
 class LevelRenderer
 {
-    private RenderWindow _window;
-    private RenderTexture[] _rt = new RenderTexture[8];
+    private readonly bool _enableBloom;
+    private readonly RenderWindow _window;
+    private readonly RenderTexture[] _rt;
     
     private static Vertex[] _unitQuadVertices = 
     {
@@ -18,40 +19,58 @@ class LevelRenderer
     private Shader _undersampleShader;
     
     
-    public LevelRenderer(RenderWindow window)
+    public LevelRenderer(RenderWindow window, bool enableBloom)
     {
+        _enableBloom = enableBloom;
         _window = window;
-        
-        for(int i = 0; i<_rt.Length; i++)
-        {
-            Vector2u currentRTSize = new Vector2u((uint)(_window.Size.X / Math.Pow(2, i)), (uint)(_window.Size.Y / Math.Pow(2, i)));
-            
-            _rt[i] = new RenderTexture(currentRTSize.X, currentRTSize.Y);
-            _rt[i].Smooth = true;
-        };
-        _combineShader = Shader.FromString(ShaderSources.CombineShaderVertex, null, ShaderSources.CombineShaderFragment);
-        _undersampleShader = Shader.FromString(ShaderSources.UndersampleShaderVertex, null, ShaderSources.UndersampleShaderFragment);
 
+        if (_enableBloom)
+        {
+            _rt = new RenderTexture[8];
+
+            for (int i = 0; i < _rt.Length; i++)
+            {
+                Vector2u currentRTSize = new Vector2u((uint) (_window.Size.X / Math.Pow(2, i)),
+                    (uint) (_window.Size.Y / Math.Pow(2, i)));
+
+                _rt[i] = new RenderTexture(currentRTSize.X, currentRTSize.Y);
+                _rt[i].Smooth = true;
+            }
+
+            ;
+            _combineShader = Shader.FromString(ShaderSources.CombineShaderVertex, null,
+                ShaderSources.CombineShaderFragment);
+            _undersampleShader = Shader.FromString(ShaderSources.UndersampleShaderVertex, null,
+                ShaderSources.UndersampleShaderFragment);
+        }
     }
 
     public void Render(Level level)
     {
-        _rt[0].Clear();
-        level.Render(_rt[0]);
-
-        for (int i = 0; i < _rt.Length - 1; i++)
+        if (_enableBloom)
         {
-            SampleTo(_rt[i].Texture, _rt[i + 1]);
-        }
+            _rt[0].Clear();
+            level.Render(_rt[0]);
 
-        RenderStates states = RenderStates.Default;
-        states.Shader = _combineShader;
-        for (int i = 0; i < _rt.Length; i++)
+            for (int i = 0; i < _rt.Length - 1; i++)
+            {
+                SampleTo(_rt[i].Texture, _rt[i + 1]);
+            }
+
+            RenderStates states = RenderStates.Default;
+            states.Shader = _combineShader;
+            for (int i = 0; i < _rt.Length; i++)
+            {
+                states.Shader.SetUniform($"u_Textures[{i}]", _rt[i].Texture);
+            }
+
+            _window.Draw(_unitQuadVertices, PrimitiveType.TriangleStrip, states);
+        }
+        else
         {
-            states.Shader.SetUniform($"u_Textures[{i}]", _rt[i].Texture);
+            _window.Clear();
+            level.Render(_window);
         }
-
-        _window.Draw(_unitQuadVertices, PrimitiveType.TriangleStrip, states);
     }
 
     public void SwapBuffers()
