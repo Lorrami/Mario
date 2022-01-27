@@ -21,12 +21,7 @@ class Level{
    {
       foreach (var obj in _objects)
       {
-         RenderStates states = RenderStates.Default;
-         states.Transform = obj.Transform;
-         foreach (var shape in obj.Shapes)
-         {
-            rt.Draw(shape, states);
-         }
+         obj.Draw(rt);
       }
    }
    public void SpawnObject(GameObject obj, Vector2f position){

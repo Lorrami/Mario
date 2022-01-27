@@ -15,7 +15,7 @@ class Bullet: GameObject{
         
         Rotation = (float)Math.Atan2(_direction.Y, _direction.X) / 3.14f * 180.0f;
 
-        AddComponent(_bulletBody);
+        AddShape(_bulletBody);
     }
     public override void Update(float dt)
     {

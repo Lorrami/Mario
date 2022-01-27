@@ -28,9 +28,9 @@ class Player : GameObject
         _aim.Size = new Vector2f(_body.Size.X / 1.5f, _body.Size.Y / 4);
         _aim.Origin = _aim.Size / 2 + new Vector2f(_body.Size.X/2, 0);
         
-        AddComponent(_body);
-        AddComponent(_bodyInner);
-        AddComponent(_aim);
+        AddShape(_body);
+        AddShape(_bodyInner);
+        AddShape(_aim);
     }
     public override void Update(float dt)
     {
