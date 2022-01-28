@@ -9,10 +9,15 @@ class PhysicsBody
     {
         get
         {
-            Transformable transformable = new Transformable();
-            transformable.Position = Position;
-            transformable.Rotation = Rotation;
-            return transformable.Transform;
+            float angle = -Rotation * MathF.PI / 180.0F;
+            float cos = MathF.Cos(angle);
+            float sin = MathF.Sin(angle);
+
+            return new Transform(
+                cos, sin, Position.X,
+                -sin, cos, Position.Y,
+                0, 0, 1
+            );
         }
     }
  
