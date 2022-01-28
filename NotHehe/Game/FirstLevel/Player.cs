@@ -5,7 +5,7 @@ using SFML.Window;
 class Player : GameObject
 {
     private readonly float _speed = 100.0f;
-    private float RotationVector;
+    private float _rotationVector;
     private bool _isShooted = false;
     private RectangleShape _body = new RectangleShape();
     private RectangleShape _bodyInner = new RectangleShape();
@@ -42,9 +42,9 @@ class Player : GameObject
     {
         float X = -Application.RelativeMousePosition.X + Position.X;
         float Y = -Application.RelativeMousePosition.Y + Position.Y;
-        RotationVector = Convert.ToSingle(Math.Atan2(Y, X)) * 180.0f/3.14159265f;
-        Console.WriteLine(RotationVector);
-        Rotation = RotationVector;
+        _rotationVector = Convert.ToSingle(Math.Atan2(Y, X)) * 180.0f/3.14159265f;
+        Console.WriteLine(_rotationVector);
+        Rotation = _rotationVector;
     }
     private void PositionControl(float dt)
     {
