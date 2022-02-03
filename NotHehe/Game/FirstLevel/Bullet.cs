@@ -16,6 +16,8 @@ class Bullet: GameObject{
         Rotation = (float)Math.Atan2(_direction.Y, _direction.X) / 3.14f * 180.0f;
 
         AddShape(_bulletBody);
+        
+        AddCollider(new CircleCollider(20));
     }
     public override void Update(float dt)
     {

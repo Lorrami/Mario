@@ -71,6 +71,7 @@ class LevelRenderer
             _window.Clear();
             level.Render(_window);
         }
+        level.DebugRender(_window);
     }
 
     public void SwapBuffers()

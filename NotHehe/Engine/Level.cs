@@ -24,6 +24,14 @@ class Level{
          obj.Draw(rt);
       }
    }
+
+   public void DebugRender(RenderTarget rt)
+   {
+      foreach (var obj in _objects)
+      {
+         obj.DebugDraw(rt);
+      }
+   }
    public void SpawnObject(GameObject obj, Vector2f position){
       obj.OwningLevel = this;
       obj.Position = position;
