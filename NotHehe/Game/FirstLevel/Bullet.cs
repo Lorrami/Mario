@@ -1,14 +1,16 @@
 using SFML.System;
 using SFML.Graphics;
 
-class Bullet: GameObject{
+class Bullet: GameObject
+{
     private readonly Vector2f _direction;
     private readonly float _speed = 300;
     private float _lifetime = 0;
     private const float _deathTime = 3;
 
     private CircleShape _bulletBody = new CircleShape(10);
-    public Bullet(Vector2f direction){
+    public Bullet(Vector2f direction)
+    {
         _direction = direction / (float)Math.Sqrt(direction.X * direction.X + direction.Y * direction.Y);
         _bulletBody.Origin = new Vector2f(_bulletBody.Radius/2, _bulletBody.Radius/2);
         _bulletBody.FillColor = Color.Red;
